@@ -1,0 +1,13 @@
+---
+layout: default
+title: Welcome to jaz-lounge - Where I put thoughts and things I want to remember.
+---
+
+<div id="home">
+  <h1>The latest</h1>
+  <ul class="posts">
+    {% if site.posts.present? %}
+      <li><span>{{ site.posts[0].date | date_to_string }}</span> &raquo; <a href="{{ site.posts[0].url }}">{{ site.posts[0].title }}</a></li>
+    {% endif %}
+  </ul>
+</div>
