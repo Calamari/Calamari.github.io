@@ -1,13 +1,65 @@
----
-layout: default
-title: All articles on jaz-lounge.com
----
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>All articles on jaz-lounge.com</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+    <meta name="description" content="Blog of Georg Tavonius, a freelance Web Developer doing JavaScript, Ruby, HTML and CSS in Hamburg.">
+    <meta name="keywords" content="Blog, JavaScript, Node.js, Ruby, HTML, HTML5, CSS, CSS3, Freelancer, Freiberufler, projects, phantom.js, Canvas, WebSockets, SocketIO, Games">
 
-<div id="home">
+    <meta content="website" property="og:type">
+    <meta content="Jaz-Lounge Blog - by Georg Tavonius" property="og:title">
+    <meta content="http://blog.jaz-lounge.com" property="og:url">
+    <meta property="og:image" content="http://jaz-lounge.com/me.jpg">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@Georg_Tavonius">
+    <meta name="twitter:title" content="Blog of Georg Tavonius; Web Developer in Hamburg">
+    <meta name="twitter:description" content="I blog about the Web, JavaScript, Ruby, product development and the life. I live in Hamburg. I am for hire.">
+    <meta name="twitter:creator" content="@Georg_Tavonius">
+    <meta name="twitter:image:src" content="http://jaz-lounge.com/me.jpg">
+    <meta name="twitter:domain" content="blog.jaz-lounge.com">
+
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body>
+
+    <div class="site">
+      <header>
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/articles/">All articles</a></li>
+          </ul>
+        </nav>
+        <h1 class="title"><a href="/">jaz-lounge - Where I put thoughts and things I want to remember.</a></h1>
+      </header>
+
+      <div id="home">
   <h1>All articles</h1>
   <ul class="posts">
-    {% for post in site.posts %}
-      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
-    {% endfor %}
+    
+      <li><span>16 Jan 2014</span> &raquo; <a href="/node.js/development/2014/01/16/deploying-a-node-application-using-capistrano.html">Deploying a node application using capistrano</a></li>
+    
+      <li><span>07 Jan 2014</span> &raquo; <a href="/games/2014/01/07/living-and-working-without-internet.html">Living and working without internet</a></li>
+    
+      <li><span>24 Jul 2013</span> &raquo; <a href="/games/2013/07/24/rochard.html">Rochard | Rock is hard, John Rochard is harder</a></li>
+    
+      <li><span>30 Jun 2013</span> &raquo; <a href="/welcome/blog/2013/06/30/welcome.html">Welcome</a></li>
+    
   </ul>
 </div>
+
+
+      <footer>
+        <div class="contact">
+          <p>
+            Hello. My name is <a href="http://jaz-lounge.com">Georg Tavonius</a>. I blog about the Web, JavaScript, Ruby, product development and the life.
+          </p>
+        </div>
+      </footer>
+    </div>
+
+  </body>
+</html>
