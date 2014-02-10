@@ -1,4 +1,3 @@
 name: "jaz-lounge - Where I put thoughts and things I want to remember."
 markdown: redcarpet
 pygments: true
-destination: _deploy
