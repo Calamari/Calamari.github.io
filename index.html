@@ -4,10 +4,20 @@ title: Welcome to jaz-lounge - Where I put thoughts and things I want to remembe
 ---
 
 <div id="home">
-  <h1>The latest</h1>
-  <ul class="posts">
-    {% if site.posts.present? %}
-      <li><span>{{ site.posts[0].date | date_to_string }}</span> &raquo; <a href="{{ site.posts[0].url }}">{{ site.posts[0].title }}</a></li>
-    {% endif %}
-  </ul>
+  <h1>The latest article:</h1>
+
+  {% unless site.posts.blank? %}
+    <article class="post">
+      <header>
+        <h2><a href="{{ site.posts[0].url }}">{{ site.posts[0].title }}</a></h2>
+        <time>{{ site.posts[0].date | date_to_string }}</time>
+      </header>
+
+      <section>
+        {{ site.posts[0].content | excerpt }}
+      </section>
+      <a href="{{ site.posts[0].url }}">Read more</a>
+    </article>
+
+  {% endunless %}
 </div>

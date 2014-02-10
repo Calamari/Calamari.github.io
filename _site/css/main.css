@@ -3,46 +3,93 @@
 /* Common
 /*
 /*****************************************************************************/
-
 /* Global Reset */
+/* line 8, /Users/calamari/work/blog-github/css/main.scss */
 * {
   margin: 0;
   padding: 0;
 }
 
-html, body { height: 100%; }
+/* line 13, /Users/calamari/work/blog-github/css/main.scss */
+html {
+  font-size: 62.5%;
+}
 
+/* line 17, /Users/calamari/work/blog-github/css/main.scss */
+html, body {
+  height: 100%;
+}
+
+/* line 19, /Users/calamari/work/blog-github/css/main.scss */
 body {
-  background-color: #FFF;
-  font: 13.34px Helvetica, Arial, sans-serif;
-  font-size: small;
+  background-color: #fff;
+  font: 2rem 'Noto Serif', Calibri, Helvetica, Arial, sans-serif;
+  line-height: 3rem;
   text-align: center;
 }
 
+/* line 26, /Users/calamari/work/blog-github/css/main.scss */
 h1, h2, h3, h4, h5, h6 {
-  font-size: 100%; }
+  font: 4rem "Open Sans", Geneva, Tahoma, Verdana, sans-serif;
+  margin-bottom: 2.6rem;
+}
 
-h1 { margin-bottom: 1em; }
-p { margin: 1em 0; }
+/* line 31, /Users/calamari/work/blog-github/css/main.scss */
+h1 {
+  line-height: 6rem;
+  margin-bottom: 2.2rem;
+}
 
-a         { color: #00a; }
-a:hover   { color: #000; }
-a:visited { color: #a0a; }
+/* line 36, /Users/calamari/work/blog-github/css/main.scss */
+h2 {
+  border-top: 2px solid #eee;
+  font-size: 3rem;
+  line-height: 3rem;
+  padding-top: 2.4rem;
+  margin-bottom: 3rem;
+}
+
+/* line 44, /Users/calamari/work/blog-github/css/main.scss */
+h3 {
+  font-size: 2.5rem;
+  line-height: 3rem;
+  margin-bottom: 3rem;
+}
+
+/* line 50, /Users/calamari/work/blog-github/css/main.scss */
+p {
+  margin: 0 0 3rem 0;
+  padding-top: 0.2rem;
+}
+
+/* line 55, /Users/calamari/work/blog-github/css/main.scss */
+a {
+  color: #a00;
+  text-decoration: none;
+}
+
+/* line 56, /Users/calamari/work/blog-github/css/main.scss */
+a:hover {
+  color: #000;
+}
 
 /*****************************************************************************/
 /*
 /* Home
 /*
 /*****************************************************************************/
+/* line 63, /Users/calamari/work/blog-github/css/main.scss */
 .posts {
   list-style-type: none;
   margin-bottom: 2em;
 }
 
+/* line 68, /Users/calamari/work/blog-github/css/main.scss */
 .posts li {
   line-height: 1.75em;
 }
 
+/* line 72, /Users/calamari/work/blog-github/css/main.scss */
 .posts span {
   color: #aaa;
   font-family: Monaco, "Courier New", monospace;
@@ -54,71 +101,81 @@ a:visited { color: #a0a; }
 /* Site
 /*
 /*****************************************************************************/
-
+/* line 84, /Users/calamari/work/blog-github/css/main.scss */
 .site {
-  font-size: 115%;
+  font-size: 2rem;
   text-align: justify;
-  width: 42em;
+  width: 70rem;
   margin: 3em auto 2em;
-  line-height: 1.5em;
 }
-
-.header a {
+/* line 90, /Users/calamari/work/blog-github/css/main.scss */
+.site > header {
+  position: relative;
+}
+/* line 93, /Users/calamari/work/blog-github/css/main.scss */
+.site > header > .title {
+  font-size: 2rem;
+  margin-bottom: 2.2rem;
+}
+/* line 98, /Users/calamari/work/blog-github/css/main.scss */
+.site > header a {
   font-weight: bold;
   text-decoration: none;
 }
-
-.title {
-  display: inline-block;
-  margin-bottom: 2em;
-}
-
-.title a {
-  color: #a00;
-}
-
-.title a:hover {
+/* line 102, /Users/calamari/work/blog-github/css/main.scss */
+.site > header a.extra:hover {
   color: #000;
 }
-
-.header a.extra {
-  color: #aaa;
-  margin-left: 1em;
-}
-
-.header a.extra:hover {
-  color: #000;
-}
-
-.meta {
-  color: #aaa;
-}
-
-.footer {
-  font-size: 80%;
-  color: #666;
-  border-top: 4px solid #eee;
-  margin-top: 2em;
+/* line 109, /Users/calamari/work/blog-github/css/main.scss */
+.site > footer {
+  font-size: 1.4rem;
+  color: #999;
+  border-top: 2px solid #eee;
+  margin-top: 6rem;
   overflow: hidden;
 }
-
-.footer .contact {
+/* line 116, /Users/calamari/work/blog-github/css/main.scss */
+.site > footer > .contact {
   float: left;
   margin-right: 3em;
 }
-
-.footer .contact a {
+/* line 120, /Users/calamari/work/blog-github/css/main.scss */
+.site > footer > .contact > a {
   color: #8085C1;
 }
-
-.footer .rss {
+/* line 125, /Users/calamari/work/blog-github/css/main.scss */
+.site > footer .rss {
   margin-top: 1.1em;
   margin-right: -.2em;
   float: right;
 }
-
-.footer .rss img {
+/* line 131, /Users/calamari/work/blog-github/css/main.scss */
+.site > footer .rss img {
   border: 0;
+}
+
+/* line 137, /Users/calamari/work/blog-github/css/main.scss */
+time {
+  color: #aaa;
+}
+
+/* line 141, /Users/calamari/work/blog-github/css/main.scss */
+nav {
+  font-size: 1.4rem;
+  color: #999;
+}
+/* line 145, /Users/calamari/work/blog-github/css/main.scss */
+nav li {
+  display: inline-block;
+  margin-right: 3rem;
+}
+/* line 149, /Users/calamari/work/blog-github/css/main.scss */
+nav li a {
+  color: #999;
+}
+/* line 152, /Users/calamari/work/blog-github/css/main.scss */
+nav li a:hover {
+  color: #000;
 }
 
 /*****************************************************************************/
@@ -126,35 +183,52 @@ a:visited { color: #a0a; }
 /* Posts
 /*
 /*****************************************************************************/
-
-/* standard */
+/* line 166, /Users/calamari/work/blog-github/css/main.scss */
+.post {
+  /* standard */
+  /* terminal */
+}
+/* line 168, /Users/calamari/work/blog-github/css/main.scss */
+.post > header > h2 {
+  line-height: 6rem;
+}
+/* line 172, /Users/calamari/work/blog-github/css/main.scss */
+.post > header > time {
+  float: right;
+  margin-top: -3rem;
+}
+/* line 179, /Users/calamari/work/blog-github/css/main.scss */
 .post pre {
   border: 1px solid #ddd;
+  box-sizing: border-box;
   background-color: #eef;
-  padding: 0 .4em;
+  margin: 0 0 2.6rem 0;
+  overflow-x: scroll;
+  padding: 0 .6rem;
 }
-
+/* line 188, /Users/calamari/work/blog-github/css/main.scss */
 .post ul, .post ol {
   margin-left: 1.35em;
 }
-
+/* line 192, /Users/calamari/work/blog-github/css/main.scss */
 .post code {
   border: 1px solid #ddd;
   background-color: #eef;
   padding: 0 .2em;
 }
-
+/* line 198, /Users/calamari/work/blog-github/css/main.scss */
 .post pre code {
   border: none;
+  line-height: 3rem;
+  padding: 0;
 }
-
-/* terminal */
-.post pre.terminal {
+/* line 205, /Users/calamari/work/blog-github/css/main.scss */
+.post .terminal {
   border: 1px solid #000;
   background-color: #333;
   color: #FFF;
 }
-
-.post pre.terminal code {
+/* line 210, /Users/calamari/work/blog-github/css/main.scss */
+.post .terminal code {
   background-color: #333;
 }

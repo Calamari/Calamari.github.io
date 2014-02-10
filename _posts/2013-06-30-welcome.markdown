@@ -1,0 +1,32 @@
+---
+layout: post
+title:  "Welcome"
+date:   2013-06-30 11:32:00
+categories: welcome blog
+---
+
+This isn't the first blog I have created. My first one dates back more then 12 years ago and looked a lot like my working desk at that time – consisting mainly of images. Since then I started writing blogs, gave it up again, started new ones, and abandoned them again. Sometimes I wrote own blog systems for my blogs – in early days with PHP – or I used [wordpress][wordpress] or microblogged on [tumblr][tumblr] which was my last one was abandoned 1.5 years ago.
+
+[wordpress]: http://www.wordpress.org
+[tumblr]: http://www.tumblr.com
+
+<!--more-->
+
+So I guess I am not a born writer. But from time to time it urged me to put some of my knowledge in words. But it is hard. Most of the time you feel that you don't have anything to write about that anyone can possibly be interested in. But lately I figured out, that I did a lot of cool stuff the past years. Most of the things have never been finished and some have never been published, but there were a lot of cool learnings for me in it. And fun. I will use this projects as source of interesting topics and write about my learnings there, any maybe publish them in that process.
+
+Last month I found a very interesting blog: [zenhabits][zenhabits] by [Leo Babauta][Leo Babauta]. Espescially the article called "[Why You Should Write Daily][write-daily]" I found very inspiring. Maybe coming back to this post now and then will be a further source of motivation and discipline. But I don't think I will commit to write daily, but writing twice a week seems reasonably.
+
+So I just started to create my own little blog software. Why I wrote my own blog again, I will cover in one of my next posts (so come back ;-) ).
+
+## What are the topics?
+
+The question now would be, what will I write about? I am a web developer mainly using JavaScript and Ruby on Rails. And I really love creating cool web applications of all kind. So I think this will be one of my main topics I will write about. So *Ruby*, *Rails*, *Node.js*, *JavaScript*, *HTML* and *CSS* may be the focus. But I will not restrict myself to that. Maybe I will also write about topics a software engineer also depends upon, like *software craftsmanship*, *how to get better*, *agile methods* and of course *other topics* I happen to be interested in.
+
+I hope you will enjoy reading my stuff, and come back from time to time.
+
+So long,
+Georg
+
+[zenhabits]: http://zenhabits.net
+[Leo Babauta]: http://leobabauta.com
+[write-daily]: http://zenhabits.net/write-daily/

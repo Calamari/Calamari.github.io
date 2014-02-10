@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Deploying a node application using capistrano</title>
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Serif">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+  </head>
+  <body>
+
+    <div class="site">
+      <header>
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/articles/">All articles</a></li>
+          </ul>
+        </nav>
+        <h1 class="title"><a href="/">jaz-lounge - Where I put thoughts and things I want to remember.</a></h1>
+      </header>
+
+      <article class="post">
+  <header>
+    <h1>Deploying a node application using capistrano</h1>
+    <time>16 Jan 2014</time>
+  </header>
+
+  <section>
+    <p>This is a guide to deploy a node application using the well known <a href="http://capistranorb.com">Capistrano</a> gem with a bit of help of the <a href="https://github.com/loopj/capistrano-node-deploy">capistrano-node-deploy</a> gem.</p>
+
+<p>This guide uses ruby to deploy your node.js application. So I assume that you habe both <a href="https://www.ruby-lang.org">ruby</a> and <a href="http://bundler.io">bundler</a> (a package manager similar to <a href="https://npmjs.org">npm</a>) installed. I also provide some feedback at the end, why I used ruby and not JavaScript for deployment.</p>
+
+<!--more-->
+
+<h2>Deploying the app</h2>
+
+<h3>Preparation</h3>
+
+<p>As all ruby projects, we have to add this to the <code>Gemfile</code>:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">gem</span> <span class="s1">&#39;capistrano&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 2&#39;</span> <span class="c1"># node-deploy has no capistrano3 support yet</span>
+<span class="n">gem</span> <span class="s1">&#39;capistrano-node-deploy&#39;</span>
+</code></pre></div>
+
+<p>If you don’t have a <code>Gemfile</code> yet, you should create one, and probably want to prepend it with this line – so bundler does know where to look for the gems:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+</code></pre></div>
+
+<p>Then we can install the gems using <code>bundler</code>:</p>
+
+<div class="highlight"><pre><code class="bash"><span class="c"># installing the gems using bundler</span>
+bundle
+</code></pre></div>
+
+<p>Beware of the Capistrano version. At the time of writing, the capistrano-node-deploy gem does not work with the new Capistrano 3 version, so we have to stick to Capistrano 2 for the time being.</p>
+
+<p>Now add a file called <code>Capfile</code>. Use this as blueprint but change all stuff that is needed:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="nb">require</span> <span class="s1">&#39;capistrano/node-deploy&#39;</span>
+
+<span class="n">set</span> <span class="ss">:application</span><span class="p">,</span> <span class="s1">&#39;example_app&#39;</span>
+<span class="n">set</span> <span class="ss">:user</span><span class="p">,</span> <span class="s1">&#39;deploy&#39;</span>
+
+<span class="n">set</span> <span class="ss">:repository</span><span class="p">,</span>  <span class="s1">&#39;git@github.com/your_name/example_app.git&#39;</span>
+<span class="n">set</span> <span class="ss">:scm</span><span class="p">,</span> <span class="ss">:git</span>
+
+<span class="c1"># If you do not have a web accessible repo yet, uncomment the following:</span>
+<span class="c1"># set :deploy_via, :copy</span>
+
+<span class="n">set</span> <span class="ss">:deploy_to</span><span class="p">,</span> <span class="s1">&#39;/var/www/example_app&#39;</span>
+<span class="n">set</span> <span class="ss">:node_user</span><span class="p">,</span> <span class="s1">&#39;mr_node&#39;</span> <span class="c1"># user that runs the app</span>
+
+<span class="n">role</span> <span class="ss">:app</span><span class="p">,</span> <span class="s1">&#39;example.app.com&#39;</span>
+</code></pre></div>
+
+<h3>Deploy it</h3>
+
+<p>Now you should be able to deploy the app using:</p>
+
+<div class="highlight"><pre><code class="bash">bundle <span class="nb">exec </span>cap deploy
+</code></pre></div>
+
+<p>Do this every time you have committed (and pushed) some changes that you want to deploy.</p>
+
+<h2>Starting the app</h2>
+
+<p>Capistrano-node-deploy comes with <a href="http://upstart.ubuntu.com">upstart</a>  support out of the box. If you are using upstart, then you might want to set the following <code>upstart_job_name</code> setting, if the name of your upstart job is not <code>APP_NAME-ENV_NAME</code>. (Add this to your <code>Capfile</code>:)</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">set</span> <span class="ss">:upstart_job_name</span><span class="p">,</span> <span class="s1">&#39;example_app&#39;</span>
+</code></pre></div>
+
+<p>Beware that it will rewrite the upstart script on every deploy if it has changed. So if you might want to change some things, set the appropriate variables in your <code>Capfile</code> and don’t change the script on the remote server manually. Which variables are there? Well, best to look in the <a href="https://github.com/loopj/capistrano-node-deploy/blob/master/lib/capistrano/node-deploy.rb#L50">code</a> for them.</p>
+
+<p>If you are using init.d at the moment, like me, then I will give you one tipp: Just switch to upstart. It’s just easier. At least for me, with init.d it really fucked up the permissions when starting with sudo, and without it simply fails ending up in multiple node instances running. And another plus for upstart: The upstart script is way simpler.</p>
+
+<p>Now <code>bundle exec cap deploy</code> will also restart the app properly. Try it:</p>
+
+<div class="highlight"><pre><code class="bash">bundle <span class="nb">exec </span>cap deploy
+</code></pre></div>
+
+<p>Capistrano also allows to do stuff on the server, not only deploys. So you could start/stop/restart your node app easily directly (without a deploy). Just try:</p>
+
+<div class="highlight"><pre><code class="bash">bundle <span class="nb">exec </span>cap node:restart
+</code></pre></div>
+
+<h3>Some helpful options</h3>
+
+<p>If your node is not running on <code>/usr/bin/node</code> you might want to set the <code>node_binary</code> option to where your node is installed:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">set</span> <span class="ss">:node_binary</span><span class="p">,</span> <span class="s1">&#39;/usr/local/bin/node&#39;</span>
+</code></pre></div>
+
+<p>If you want pass some command line arguments to your app, you should specify them directly in your <code>main</code> part in your <code>package.json</code>. Capistrano-node-deploy does not have another way implemented to just pass them in directly. So something like:</p>
+
+<div class="highlight"><pre><code class="json"><span class="p">{</span>
+  <span class="nt">&quot;main&quot;</span><span class="p">:</span> <span class="s2">&quot;my_app.js —port=8124&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Although I suggest to make those things configurable through a config file depending on the environment the app is running, to gain some flexibility.</p>
+
+<p>And the last tipp I want to give is, setting the environment for your app. It is set to <code>production</code> by default, but if you have a staging server you might want to set in the <code>Capfile</code>:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">set</span> <span class="ss">:node_env</span><span class="p">,</span> <span class="s1">&#39;staging&#39;</span>
+</code></pre></div>
+
+<h2>Recap</h2>
+
+<p>This is pretty simple and Capistrano is a tool that is pretty battle tested, because it is used literally everywhere in the Ruby on Rails world. But although it works, there are some reasons why I am not totally fond of this solution:</p>
+
+<p>The first obvious reason is that using Capistrano is in need of ruby. It is not a problem for me, I always have ruby installed for some other projects, but having a JavaScript app relying on ruby although it’s only for deployment feels weird. The second and bigger point is it does not take good use of the npm hooks defined in the <code>package.json</code>.</p>
+
+<p>If you are using <a href="http://nodejitsu.com">nodejitsu</a> as server you know what I mean with the latter point. I really like the way the <code>jitsu</code> command works when deploying. Especially the handling of the version number is way better then the Capistrano solution. But if you do not use nodejitsu, there is no other similar solution like it in the node realm – at least I could not find it. I thought about starting to write one, but the capistrano solution is easier for now, and if you want to deploy right away, that’s a way to go.</p>
+
+<p>I hope this little go through is useful to anyone.</p>
+
+<p><em>P.S.: Someone cares for writing a node deploy mechanism similar to <code>jitsu</code> without the nodejitsu dependency? Fame and glory awaits.</em></p>
+
+  </section>
+</article>
+
+
+      <footer>
+        <div class="contact">
+          <p>
+            Hello. My name is <a href="http://jaz-lounge.com">Georg Tavonius</a>. I blog about the Web, JavaScript, Ruby, product development and the life.
+          </p>
+        </div>
+      </footer>
+    </div>
+
+  </body>
+</html>
